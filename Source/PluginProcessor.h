@@ -56,6 +56,12 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    // Function that provides a list of all parameters in APVTS layout
+    static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+    
+    // Object that coordinates synchronization with GUI
+    juce::AudioProcessorValueTreeState apvts {*this, nullptr, "Parameter", createParameterLayout()};
+    
 private:
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioeqpluginAudioProcessor)
